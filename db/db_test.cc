@@ -2240,6 +2240,7 @@ std::string MakeKey(unsigned int num) {
 
 void BM_LogAndApply(int iters, int num_base_files) {
   std::string dbname = testing::TempDir() + "leveldb_test_benchmark";
+  LOG("dbname: %s\n", dbname.c_str());
   DestroyDB(dbname, Options());
 
   DB* db = nullptr;

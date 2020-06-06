@@ -1538,6 +1538,7 @@ Status DestroyDB(const std::string& dbname, const Options& options) {
     for (size_t i = 0; i < filenames.size(); i++) {
       if (ParseFileName(filenames[i], &number, &type) &&
           type != kDBLockFile) {  // Lock file will be deleted at end
+          LOG("remove file:%s\n", filenames[i].c_str());
         Status del = env->RemoveFile(dbname + "/" + filenames[i]);
         if (result.ok() && !del.ok()) {
           result = del;
@@ -1550,5 +1551,12 @@ Status DestroyDB(const std::string& dbname, const Options& options) {
   }
   return result;
 }
+
+void LOG(const char *format, ...)  {
+#ifndef NDEBUG
+    printf(format);
+#else
+#endif 
+  }
 
 }  // namespace leveldb

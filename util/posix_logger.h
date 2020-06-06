@@ -62,6 +62,7 @@ class PosixLogger final : public Logger {
           (iteration == 0) ? stack_buffer : new char[dynamic_buffer_size];
 
       // Print the header into the buffer.
+      // buffer_offset是格式化后的字符串的长度+1，最后加一个\0
       int buffer_offset = std::snprintf(
           buffer, buffer_size, "%04d/%02d/%02d-%02d:%02d:%02d.%06d %s ",
           now_components.tm_year + 1900, now_components.tm_mon + 1,
@@ -87,6 +88,7 @@ class PosixLogger final : public Logger {
 
       // The code below may append a newline at the end of the buffer, which
       // requires an extra character.
+      // 如果静态大小512字节的buffer不能装下格式化后的msg，则用动态分配的buffer，进入第二次循环
       if (buffer_offset >= buffer_size - 1) {
         // The message did not fit into the buffer.
         if (iteration == 0) {

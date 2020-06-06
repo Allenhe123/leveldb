@@ -48,6 +48,9 @@ class SequentialFile;
 class Slice;
 class WritableFile;
 
+// 通过Env类，将系统相关的底层调用和操作进行了封装。这样用户就可以通过实现自己的Env，
+// 将LevelDB架在不同的文件系统上。用户只需要实现自己的Env，然后通过Options在OpenDB时传递给它，
+// 这样这些相应的操作就会使用用户自己的实现了。
 class LEVELDB_EXPORT Env {
  public:
   Env();

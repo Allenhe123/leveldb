@@ -22,6 +22,7 @@ class Snapshot;
 // sequence of key,value pairs.  Each block may be compressed before
 // being stored in a file.  The following enum describes which
 // compression method (if any) is used to compress a block.
+// DB Block压缩算法
 enum CompressionType {
   // NOTE: do not change the values of existing entries, as these are
   // part of the persistent format on disk.
@@ -39,7 +40,7 @@ struct LEVELDB_EXPORT Options {
 
   // Comparator used to define the order of keys in the table.
   // Default: a comparator that uses lexicographic byte-wise ordering
-  //
+  // 用于key的比较，默认字典式字节序
   // REQUIRES: The client must ensure that the comparator supplied
   // here has the same name and orders keys *exactly* the same as the
   // comparator provided to previous open calls on the same DB.
