@@ -439,6 +439,8 @@ int main() {
   endif(HAVE_KYOTOCABINET)
 endif(LEVELDB_BUILD_BENCHMARKS)
 
+add_subdirectory(example)
+
 if(LEVELDB_INSTALL)
   install(TARGETS leveldb
     EXPORT leveldbTargets
