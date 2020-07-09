@@ -40,6 +40,7 @@ class TwoPartComparator : public leveldb::Comparator {
 
 int main()
 {
+    leveldb::LOG("enter func: %s, line: %d\n", __FUNCTION__,  __LINE__);
     leveldb::DB* db = nullptr;
     leveldb::Options options;
     options.create_if_missing = true;
